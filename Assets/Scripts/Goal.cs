@@ -20,7 +20,7 @@ public		class		Goal				: MonoBehaviour {
 	 */
 	private		void	OnTriggerEnter( Collider hitCollider) {
 		
-		//相手の GameObject を取得
+	
 		GameObject	hitObject	= hitCollider.gameObject;
 		
 		//Playerクラスを持った GameObject が接触するしたらゴールにする
