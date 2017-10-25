@@ -182,15 +182,7 @@ public class Player : MonoBehaviour {
         }
 
 
-        //reset entire MAZE button
-        if (Input.GetKey(KeyCode.Home)) {
-
-                doubleTap = true;
-
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
-
-        }
+    
 
 
         //reset CURRENT player position
