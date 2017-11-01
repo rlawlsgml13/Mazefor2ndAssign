@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
     public GameObject bulletObject = null;      //弾プレハブ
 
     public Transform bulletStartPosition = null;        //弾の発射位置を取得するボーン
-
+    public GameObject fieldObject = null;
 
 
     private static readonly float MOVE_Z_FRONT = 5.0f;  //前進の速度
@@ -20,6 +20,7 @@ public class Player : MonoBehaviour {
     private static readonly float ROTATION_Y_MOUSE = 720.0f;    //回転の速度(マウス)
 
     private float m_rotationY = 0.0f;       //プレーヤーの回転角度
+    private float m_rotationX = 0.0f;
 
     private bool m_mouseLockFlag = true;        //マウスを固定する機能
 
@@ -86,6 +87,7 @@ public class Player : MonoBehaviour {
         {
             // 이 프레임에서 움직이는 회전량(Moving rotation in frame)
             float addRotationY = 0.0f;
+            float addRotationX = 0.0f;
 
             //키 조작에 의한 회전(Rotation by command)
             if (Input.GetKey(KeyCode.A)) {
@@ -110,11 +112,14 @@ public class Player : MonoBehaviour {
                 addRotationY += (Input.GetAxis("Mouse X") * ROTATION_Y_MOUSE);
             }
 
+
             //현재 각도에 더한다(Add to present degree)
             m_rotationY += (addRotationY * Time.deltaTime);     //이동량, 회전량에는 Time.deltaTime을 곱해서 기계 차이에 의한 프레임을 없애준다(Make Frame equally between different devices).
-
+           // m_rotationX += (addRotationX * Time.deltaTime); 
             //오일러 각으로 입력한다(Enter Euler degree)
             transform.rotation = Quaternion.Euler(0, m_rotationY, 0);       //Y축 회전으로 캐릭터 방향을 옆으로 바꾼다(Change character's direction in Y).
+           // transform.rotation = Quaternion.Euler(0, m_rotationX, 0);
+
         }
 
         //이동(Movement)
@@ -202,7 +207,11 @@ public class Player : MonoBehaviour {
             }
 
 
+        if (Input.GetKey(KeyCode.I)) {
+            gameObject.layer = LayerMask.NameToLayer("ghost");
+            
 
+        }
         
 
 
